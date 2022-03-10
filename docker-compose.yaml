@@ -6,7 +6,7 @@ services:
 
     image: 'webapp:1.0'
 
-    build: .
+    build: C:\Users\Vitaly\IdeaProjects\front\card-transfer
 
     ports:
       - '3000:3000'

@@ -13,13 +13,14 @@ import ru.netology.moneytransferservice.trasferdata.TransferData;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Data
 @Slf4j
 @Repository
 public class CardsRepository {
-    private final List<Card> cardsList = new ArrayList<>(List.of(new Card("1111111111111111", "11/22", "123", 2000),
+    private final List<Card> cardsList = new CopyOnWriteArrayList<>(List.of(new Card("1111111111111111", "11/22", "123", 2000),
             new Card("2222222222222222", "12/22", "456", 2000)));
     private AtomicInteger operationId = new AtomicInteger();
     private final String verificationCode = "0000";

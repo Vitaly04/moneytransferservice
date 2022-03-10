@@ -12,7 +12,8 @@ import ru.netology.moneytransferservice.trasferdata.TransferData;
 
 @RestController
 @AllArgsConstructor
-@CrossOrigin(origins="https://serp-ya.github.io")
+//@CrossOrigin(origins="https://serp-ya.github.io")
+@CrossOrigin(origins = "http://localhost:3000/")
 public class MoneyTransferServiceController {
     private MoneyTransferService service;
 
