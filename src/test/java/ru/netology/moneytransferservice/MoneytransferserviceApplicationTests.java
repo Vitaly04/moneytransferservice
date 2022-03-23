@@ -10,10 +10,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import ru.netology.moneytransferservice.operation.Operation;
 import ru.netology.moneytransferservice.repository.CardsRepository;
 import ru.netology.moneytransferservice.trasferdata.Amount;
 import ru.netology.moneytransferservice.trasferdata.ConfirmData;
 import ru.netology.moneytransferservice.trasferdata.TransferData;
+
+import java.util.Map;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -60,12 +63,19 @@ class MoneytransferserviceApplicationTests {
                 .cardFromValidTill("11/22")
                 .cardToNumber("2222222222222222")
                 .build();
+        Operation operation = Operation.builder()
+                .cardToTransferIndex(1)
+                .cardFromTransferIndex(0)
+                .amountTransfer(112)
+                .transferIsAllowed(true)
+                .transferData(transferData)
+                .build();
+        cardsRepository.setOperation(operation);
+        cardsRepository.setOperationMap(Map.of(0, operation));
         ConfirmData confirmData = Mockito.mock(ConfirmData.class);
         Mockito.when(confirmData.getCode()).thenReturn("0000");
-        cardsRepository.setTransferDataAllowed(transferData);
-        cardsRepository.setCardToTransferIndex(1);
-        cardsRepository.setCardFromTransferIndex(0);
         String actual = cardsRepository.confirmOperation(confirmData);
+        System.out.println(actual);
         String expected = "0";
         Assertions.assertEquals(expected, actual);
     }

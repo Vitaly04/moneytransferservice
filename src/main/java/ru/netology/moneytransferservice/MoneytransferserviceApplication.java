@@ -13,9 +13,7 @@ import ru.netology.moneytransferservice.service.MoneyTransferService;
 public class MoneytransferserviceApplication {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext context = SpringApplication.run(MoneytransferserviceApplication.class, args);
-        MoneyTransferService service = context.getBean(MoneyTransferService.class);
-        CardsRepository cardsRepository = context.getBean(CardsRepository.class);
-        Card card = context.getBean(Card.class);
+
+        SpringApplication.run(MoneytransferserviceApplication.class, args);
     }
 }
